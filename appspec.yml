@@ -1,10 +1,17 @@
 version: 0.0
 os: linux
+
 files:
-  - source: /
+  - source: index.html
     destination: /var/www/html/
+    overwrite: true
+
 hooks:
   AfterInstall:
     - location: restart_httpd.sh
-      timeout: 300
+      timeout: 60
+      runas: root
+  ValidateService:
+    - location: validate_service.sh
+      timeout: 60
       runas: root
