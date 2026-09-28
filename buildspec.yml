@@ -1,8 +1,14 @@
 version: 0.2
+
 phases:
   build:
     commands:
-      - echo "packaging..."
+      - test -s index.html
+      - grep -q "<!doctype html>" index.html
+
 artifacts:
   files:
-    - '**/*'
+    - index.html
+    - appspec.yml
+    - restart_httpd.sh
+    - validate_service.sh
